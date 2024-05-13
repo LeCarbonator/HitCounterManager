@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "exactOptionalPropertyTypes": false,
+        "noFallthroughCasesInSwitch": false,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strict": true,
+        "allowArbitraryExtensions": false,
+        "allowImportingTsExtensions": false,
+
+        "declaration": false,
+        "declarationMap": false,
+        "importHelpers": true,
+        "newLine": "lf",
+        "noEmitHelpers": true,
+        "outDir": "Designs",
+        "removeComments": false,
+        "sourceMap": false,
+
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "preserveConstEnums": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["ES2022", "DOM"],
+        "target": "ES5"
+    },
+    "include": ["Sources/Designs/**/*.ts", "Sources/Designs/**/*.ts"],
+    "exclude": ["tests/**/*", "node_modules/**/*"]
+}
