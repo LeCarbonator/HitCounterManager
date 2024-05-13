@@ -194,3 +194,28 @@ export function CrossOrCheckmark(hits: number): string {
     }
     return '<img src="img_bar.png" height="21px">';
 }
+
+/**
+ * Converts a time difference in milliseconds to a signed formatted string.
+ * Milliseconds will be displayed as subtext.
+ *
+ * @param {number} diff - The time difference in milliseconds.
+ * @param {boolean} showMs - A flag indicating whether to include milliseconds in the output.
+ * Milliseconds will have 10ms accuracy.
+ * @returns {string} - The formatted time difference string.
+ *
+ * @see {@link intToTimeStr}
+ */
+export function diffToTimeStr(diff: number, showMs: boolean): string {
+    if (diff < 0) return '-';
+
+    let output = '';
+
+    if (diff > 0) {
+        output += '+';
+    }
+
+    output += intToTimeStr(Math.abs(diff), showMs);
+
+    return output;
+}

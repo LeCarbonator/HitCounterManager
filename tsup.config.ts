@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
     entry: {
-        index: 'Sources/doVisualUpdate.ts'
+        main: 'Sources/dataFunctions.ts'
     },
     external: [],
     noExternal: [],
@@ -20,7 +20,7 @@ export default defineConfig({
     splitting: false,
     keepNames: true,
     dts: true,
-    sourcemap: true,
-    treeshake: false,
+    sourcemap: false,
+    treeshake: true,
     outDir: 'Designs'
 });
