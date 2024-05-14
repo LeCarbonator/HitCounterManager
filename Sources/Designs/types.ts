@@ -27,14 +27,23 @@ export enum SeverityType {
      */
     ComparePB = 2
 }
+
+type HCMDataList = [
+    string,
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    number
+];
+
 /**
  * Interface representing the incoming HCM data.
  */
 export interface HCMData {
-    /**
-     * The
-     */
-    list: [string, number, number, number, number, number, number, number];
+    list: HCMDataList[];
     timer_paused: boolean;
     run_active: number;
     show_hits: boolean;
@@ -51,11 +60,27 @@ export interface HCMData {
     split_first: number;
     split_last: number;
     high_contrast: boolean;
+    high_contrast_names: boolean;
     purpose: CounterPurpose;
+    severity: SeverityType;
     font_name: string;
     font_url: string;
     css_url: string;
     update_time?: number;
+    split_active: number;
+    progress_bar_colored: boolean;
+    show_time_footer: boolean;
+    show_progress_bar: boolean;
+    attempts: number;
+    show_headline: boolean;
+    highlight_active_split: boolean;
+    use_roman: boolean;
+    supPB: boolean;
+    show_pb_totals: boolean;
+    best_progress: number;
+    session_progress: number;
+    width: number;
+    height: number;
 }
 
 export interface Split {
@@ -65,9 +90,25 @@ export interface Split {
     wayHits: number;
     runId: number;
     duration: number;
-    pbDuration: number;
-    goldDuration: number;
+    durationPb: number;
+    durationGold: number;
     comulativePb: number;
     comulativeTime: number;
     comulativeTimePb: number;
+    bossHits: number;
+    isHitless: boolean;
+    isHitlessPb: boolean;
+    isReached: boolean;
+    doDisplay: boolean;
+    classColor: string;
+    className: string;
+    classHits: string;
+    classTime: string;
 }
+
+export type GlobalHitsData = {
+    combined: number;
+    way: number;
+    pb: number;
+    class: string;
+};

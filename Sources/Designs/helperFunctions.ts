@@ -71,25 +71,6 @@ export function intFloorAndFill(n: number, digits: number): string {
 }
 
 /**
- * Generate a span element with the provided data.
- * @param {string} id - The id of the span element.
- * @param {string} styleClass - The class to apply to the span element.
- * @param {string} content - The text within the span element.
- * @returns {HTMLSpanElement} A span element.
- */
-export function SpanFactory(
-    id: string,
-    styleClass: string,
-    content: string
-): HTMLSpanElement {
-    const spanElement = document.createElement('span');
-    spanElement.id = id;
-    spanElement.classList.add(...styleClass.split(' '));
-    spanElement.textContent = content;
-    return spanElement;
-}
-
-/**
  * Converts a time in milliseconds to a formatted string.
  * Milliseconds will be displayed as subtext.
  * @param {number} n - The time in milliseconds.
@@ -160,15 +141,12 @@ export function intToSignedString(n: number): string {
 /**
  * This function creates the session progress star.
  *
- * @returns {HTMLImageElement} - The created image element.
+ * @returns {string} - The created image element.
  *
  * @href 'img_star.png';
  */
-export function SessionProgressStar(): HTMLImageElement {
-    const image = document.createElement('img');
-    image.src = 'img_star.png';
-    image.height = 21;
-    return image;
+export function SessionProgressStar(): string {
+    return '<img src="img_star.png" height="21px">';
 }
 
 /**
@@ -218,4 +196,64 @@ export function diffToTimeStr(diff: number, showMs: boolean): string {
     output += intToTimeStr(Math.abs(diff), showMs);
 
     return output;
+}
+
+/**
+ * Converts an integer to a display string based on the provided options.
+ *
+ * @param {number} n - The integer to convert.
+ * @param {boolean} forceSigned - A flag indicating whether to force the output to be signed.
+ * @param {boolean} showRoman - A flag indicating whether to convert the number to a Roman numeral string.
+ * @returns {string} - The display string representation of the integer.
+ *
+ * @example
+ * intToDisplayString(-5, false, false) // returns "-5"
+ * intToDisplayString(10, false, false) // returns "10"
+ * intToDisplayString(10, true, false) // returns "+10"
+ * intToDisplayString(0, true, false) // returns "0"
+ * intToDisplayString(1994, false, true) // returns "MCMXCIV"
+ */
+export function intToDisplayString(
+    n: number,
+    forceSigned: boolean,
+    showRoman: boolean
+) {
+    const prefix = forceSigned ? intToSignedString(n).charAt(0) : '';
+    const num = showRoman ? intToRomanStr(Math.abs(n)) : Math.abs(n).toString();
+
+    return prefix + num;
+}
+
+/**
+ * Generate a span element with the provided data.
+ * @param {string} id - The id of the span element.
+ * @param {string} styleClass - The class to apply to the span element.
+ * @param {string} content - The text within the span element.
+ * @returns {string} A span element.
+ */
+export function SpanFactory(
+    id: string,
+    styleClass: string,
+    content: string
+): string {
+    return `<span id="${id}" class="${styleClass}">${content}</span>`;
+}
+
+/**
+ * Counts the number of `true` values in the provided boolean array or arguments.
+ *
+ * @param {...boolean[] | [boolean[]]} restOrArray - A single boolean array or individual boolean arguments.
+ * @returns {number} The count of `true` values.
+ *
+ * @example
+ * countTrue(true, false, true) // returns 2
+ * countTrue([true, false, true, false]) // returns 2
+ * countTrue([false, false, false]) // returns 0
+ * countTrue() // returns 0
+ */
+export function countTrue(...restOrArray: boolean[] | [boolean[]]): number {
+    if (Array.isArray(restOrArray[0])) {
+        return restOrArray[0].filter(Boolean).length;
+    }
+    return restOrArray.filter(Boolean).length;
 }
